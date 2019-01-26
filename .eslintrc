@@ -1,6 +1,10 @@
 {
-    "extends": ["eslint:recommended"],
-    "plugins": [],
+    "extends": ["eslint:recommended", "plugin:react/recommended"],
+    "plugins": ["react"],
+    "rules": {
+        "react/prop-types": 0
+    },
+    "parser": "babel-eslint",
     "parserOptions": {
         "ecmaVersion": 2016,
         "sourceType": "module",
@@ -12,5 +16,10 @@
         "es6": true,
         "browser": true,
         "node": true
+    },
+    "settings": {
+        "react": {
+            "version": "16.7"
+        }
     }
 }
