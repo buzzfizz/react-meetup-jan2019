@@ -1,11 +1,20 @@
 import React from "react";
+import { loadMovies } from './api';
 import Movie from "./Movie";
+import { BusyContainer } from './busy-container';
+
 
 class App extends React.Component {
 
     state = {
         showMovies: false,
-        appTitle: 'React Movie App'
+        isLoading: true,
+        appTitle: 'React Movie App',
+        movies: []
+    }
+
+    componentDidMount() {
+        loadMovies().then(movies => this.setState({ movies, isLoading: false }));
     }
 
     toggleMovies = () => {
@@ -25,16 +34,22 @@ class App extends React.Component {
                         {this.state.showMovies ? 'Hide' : 'Show'} Movies
                     </button>
                 </div>
-                {this.state.showMovies && (
-                    <>
-                        <Movie name="Aquaman" releaseDate="2018-12-07" />
-                        <Movie name="Bumblebee" releaseDate="2018-12-15" />
-                        <Movie
-                            name="Fantastic Beasts: The Crimes of Grindelwald"
-                            releaseDate="2018-11-14"
-                        />
-                    </>
-                )}
+                {
+                    this.state.showMovies && (
+                        <BusyContainer isLoading={this.state.isLoading}>
+                            {this.state.movies.map(movie => (
+                                <Movie
+                                    key={movie.id}
+                                    name={movie.name}
+                                    releaseDate={movie.releaseDate}
+                                    description={movie.description}
+                                />
+                            ))}
+                        </BusyContainer>
+                    )
+
+
+                }
             </div>
         );
     }
