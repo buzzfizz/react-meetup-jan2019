@@ -1,3 +1,4 @@
+import React from 'react';
 import Movie from './Movie';
 
 const App = function () {
@@ -14,7 +15,7 @@ const App = function () {
             genre: "Action"
         }),
         React.createElement(Movie, {
-            name: "Bumblebee",
+            name: "Ultraman",
             releaseDate: "2018-12-15",
             genre: "Action"
         }),
