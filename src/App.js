@@ -1,7 +1,9 @@
 import React from "react";
-import { loadMovies } from './api';
 import Movie from "./Movie";
 import { BusyContainer } from './busy-container';
+
+const loadCodeAndMovies = () =>
+    import('./api').then(({ loadMovies }) => loadMovies());
 
 
 class App extends React.Component {
@@ -14,7 +16,7 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-        loadMovies().then(movies => this.setState({ movies, isLoading: false }));
+        loadCodeAndMovies().then(movies => this.setState({ movies, isLoading: false }));
     }
 
     toggleMovies = () => {
