@@ -1,5 +1,5 @@
-import React from 'react';
-import Movie from './Movie';
+import React from "react";
+import Movie from "./Movie";
 
 const App = function () {
     return React.createElement("div", {}, [

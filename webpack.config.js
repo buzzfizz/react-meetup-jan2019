@@ -12,6 +12,13 @@ module.exports = {
     output: {
         filename: 'script.[hash].js'
     },
+    module: {
+        rules: [{
+            test: /\.(js|jsx)$/,
+            exclude: /node_modules/,
+            use: ['babel-loader']
+        }]
+    },
     devServer: {
         port: 9200
     },
